@@ -5,6 +5,7 @@ html {
 *,
 *::before,
 *::after {
+    cursor: url(cursor.png)16 16,auto;
     box-sizing: inherit;
 }
 
@@ -40,7 +41,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #ddbf4f 0%, #d33a32 100%);
+    background: linear-gradient(160deg, #bbbab7 0%, #e5e8e9 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.65);
@@ -72,11 +73,10 @@ h1 {
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.65);
+    box-shadow: 5px 2px 20px 0 rgba(73, 68, 46, 0.65);
     pointer-events: auto;
 }
 .card.hint
@@ -111,21 +111,19 @@ i.hint
     transform: rotateY(180deg);
     transition: 0.3s;
     background: #2f91f9;
-    cursor: default;
     pointer-events: none;
 }
 .card.open {
     transform: rotateY(180deg);
     transition: 0.3s;
     background: #2f91f9;
-    cursor: default;
     pointer-events: none;
     font-size: 33px;
 
 }
 
 .card.blur {
-    border-radius: 50%;
+  
     animation: animate 2s infinite;
     box-shadow: inset 2px 1px 14px 8px rgba(0,0,0,0.75);
 }
@@ -135,7 +133,7 @@ i.hint
         box-shadow: inset 2px 1px 14px 8px rgba(0,0,0,0.75);
     }
     50% {
-        box-shadow: inset 2px 1px 14px 8px rgba(255, 255, 255, 0);
+        box-shadow: inset 2px 1px 14px 8px rgba(0,0,0,0.45);
     }
     100%
     {
@@ -154,9 +152,11 @@ i.hint
 }
 
 .deck .card.match {
-    cursor: default;
-    background: #1bc45f;
+    background: linear-gradient(160deg, #bbbab7 0%, #e5e8e9 100%);
+    color: #2e3d49;
     font-size: 33px;
+    box-shadow: inset 2px 1px 14px 8px rgba(0,0,0,0.45);
+
 }
 
 .card.match:hover {
@@ -189,7 +189,6 @@ i.hint
 }
 
 .score-panel .restart {
-    cursor: pointer;
 }
 
 .score-panel #timer {
@@ -205,7 +204,6 @@ i.hint
 
 .restart button {
 	border-radius: 5px;
-	cursor: pointer;
 }
 
 .button-simple {
@@ -218,7 +216,6 @@ i.hint
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
     border-radius: 4px;
 }
 

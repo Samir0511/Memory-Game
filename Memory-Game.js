@@ -14,20 +14,11 @@
     var htmlelement = "";
     let CardDeck2 = [];
     let hintcard = [] ;
-    
     let hints = 5;
-
-
     let seconds = Math.floor(Math.random() * 60)+50;
-
-
-  
-    
-
 
     while(CardDeck.length !=0)
     {
-        
         let randomIndex = Math.floor(Math.random() * CardDeck.length);
         cardid++;
         cardindex.push(randomIndex);
@@ -35,7 +26,6 @@
         let val = CardDeck.splice(randomIndex, 1);
         CardDeck2.push(val);
         hintcard.push(val);
-
         htmlelement +=  `<li class = 'card' id ='${cardid}' ><i class = 'fa ${val}'></i> </li>`;
     }
     
@@ -48,13 +38,10 @@
         let val = CardDeck2.splice(randomIndex, 1)[0];
         hintcard.push(val);
         htmlelement +=  `<li class = 'card' id ='${cardid}' ><i class = 'fa ${val}'></i> </li>`;
-        
     }
     let divElement = document.getElementById("deck");
     divElement.innerHTML = htmlelement;
-    console.log(hintcard);
     window.onload = timer();
-    
     let time= setInterval(timer, 1000);
     function timer() {
     if(seconds ==0)
@@ -188,7 +175,6 @@
             card2.classList.add('match', 'blur');
     
             hintcard = hintcard.filter(icon => icon[0] !== icon1);
-            console.log(hintcard);
     
             moves++;
             document.getElementById('moves').innerHTML = moves;
