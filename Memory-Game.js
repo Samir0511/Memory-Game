@@ -8,32 +8,35 @@
         'fa-anchor',
         'fa-leaf',
     ];
-    let flippedCards = [];
-    let flippedicons = [];
-    let moves = 0;
-    let cardopen = 0;
-    
-    let id=0;
-    let cardindex = [10];
-    let cardid = 0;
+    let flippedCards = [],flippedicons = [];
+    let moves = 0,cardopen = 0,id=0, cardid = 0;
+    let cardindex = [];
     var htmlelement = "";
     let CardDeck2 = [];
+    let hintcard = [] ;
+    
+    let hints = 5;
 
 
     let seconds = Math.floor(Math.random() * 60)+50;
 
+
+  
+    
+
+
     while(CardDeck.length !=0)
     {
-        let randomIndex = Math.floor(Math.random() * CardDeck.length);
         
+        let randomIndex = Math.floor(Math.random() * CardDeck.length);
         cardid++;
         cardindex.push(randomIndex);
-        console.log(randomIndex);
         let randomCard = CardDeck[randomIndex];
         let val = CardDeck.splice(randomIndex, 1);
         CardDeck2.push(val);
+        hintcard.push(val);
+
         htmlelement +=  `<li class = 'card' id ='${cardid}' ><i class = 'fa ${val}'></i> </li>`;
-        console.log(val);
     }
     
     while(CardDeck2.length !=0)
@@ -41,17 +44,17 @@
         let randomIndex = Math.floor(Math.random() * CardDeck2.length);
         cardid++;
         cardindex.push(randomIndex);
-        console.log(randomIndex);
         let randomCard = CardDeck2[randomIndex];
-        let val = CardDeck2.splice(randomIndex, 1);
+        let val = CardDeck2.splice(randomIndex, 1)[0];
+        hintcard.push(val);
         htmlelement +=  `<li class = 'card' id ='${cardid}' ><i class = 'fa ${val}'></i> </li>`;
-        console.log(val);
+        
     }
     let divElement = document.getElementById("deck");
     divElement.innerHTML = htmlelement;
-
-
+    console.log(hintcard);
     window.onload = timer();
+    
     let time= setInterval(timer, 1000);
     function timer() {
     if(seconds ==0)
@@ -71,7 +74,53 @@
         timer.innerHTML = ('00' + Math.floor(seconds / 60)).slice(2) + ':' + ('00' + (seconds % 60)).slice(-2);
     }  
     }
+    function hint() {
 
+        console.log(hintcard)
+        if (hints > 0 || hintcard.length < 2) {
+            let randomIndex = Math.floor(Math.random() * hintcard.length);
+            let randomCard = hintcard[randomIndex];
+            for (let i = 0; i < hintcard.length; i++) {
+              
+               if(randomCard[0] == hintcard[i])
+               {
+                
+               let cardElement =  document.getElementsByClassName(`${randomCard}`);
+               let Cardtag =  document.getElementById(`${randomIndex}`);
+
+                if (cardElement) {
+
+
+                    cardElement[0].classList.add('hint');  
+                    cardElement[1].classList.add('hint');  
+                        
+                    document.getElementById('hint').style.display ='none';
+                        setTimeout(() => {
+                            cardElement[0].classList.remove('hint');
+                            cardElement[1].classList.remove('hint');
+                            let hintbtn =  document.getElementById('hint').innerHTML;
+                            document.getElementById('hint').style.display ='block';
+                            document.getElementById('hint').innerHTML =" "+ hints +" Hints left";
+
+
+
+                        }, 1500);
+
+                        break;
+                        
+                }
+        
+               }
+                
+            }
+            
+            hints--;
+        } else {
+            alert("No more hints available");
+        }
+    }
+    
+    
     function winPage() {
     let winpage = document.getElementById("winpage");
     winpage.classList.remove("closed");
@@ -93,7 +142,6 @@
         cards.forEach(card => card.classList.remove('open','match'));
         let deck = document.querySelectorAll('.deck li');
         deck.forEach(deck => deck.classList.remove('open','show'));
-        deck.forEach(deck => deck.classList.remove('show'));
         let icons = document.querySelectorAll('.icon');
         icons.forEach(icon => icon.classList.remove('open'));
         let stars = document.querySelectorAll('.stars li');
@@ -110,7 +158,10 @@
             }
         });
         var cardId = event.target.id;
+
+
         var card = document.getElementById(cardId);
+
         if (card.classList.contains('open') || flippedCards.length ==2)
         {
           
@@ -130,30 +181,32 @@
     }
     function checkcards(cards, icons) {
         let [card1, card2] = cards;
-        let [icon1,icon2] = icons;
-
-        if (icon1==icon2) {
-                card1.classList.add('match');
-                card2.classList.add('match'); 
-                moves++;
-                document.getElementById('moves').innerHTML = moves;
-                flippedCards = [];
-                flippedicons = [];
-                cardopen +=2;
-                if(cardopen ==16)
-                {
-                    winPage();
-                } 
+        let [icon1, icon2] = icons;
+    
+        if (icon1 === icon2) {
+            card1.classList.add('match', 'blur');
+            card2.classList.add('match', 'blur');
+    
+            hintcard = hintcard.filter(icon => icon[0] !== icon1);
+            console.log(hintcard);
+    
+            moves++;
+            document.getElementById('moves').innerHTML = moves;
+            flippedCards = [];
+            flippedicons = [];
+            cardopen += 2;
+            if (cardopen === 16) {
+                winPage();
+            }
         } else {
-                setTimeout(function() {
+            setTimeout(function() {
                 card1.classList.remove('open');
                 card2.classList.remove('open');
                 card1.classList.add('close');
                 card2.classList.add('close');
-            
+    
                 flippedCards = [];
                 flippedicons = [];
-                
             }, 1000);
         }
     }

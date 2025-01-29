@@ -14,73 +14,10 @@
             <h1>Memory Game</h1>
         </header>
 
-        <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+       
 
-        	<span class="moves" id="moves">0</span> Moves
-
-          <div id="timer" >00:00:00</div>
-
-            <div class="restart" >
-              <button type="button" class="btn btn-info btn-sm" onclick="Restart();">
-        		<i class="fa fa-repeat"></i>
-            </button>
-        	</div>
-        </section>
-
-        <ul class="deck" id="deck"  onclick="showInnerDivId(); "  >
-            <li class="card" id="1" >
-                <i class="fa fa-diamond" data-icon="diamond"></i>
-            </li>
-            <li class="card" id="2" >
-                <i class="fa fa-paper-plane-o" data-name="Paper"></i>
-            </li>
-            <li class="card" id="3">
-                <i class="fa fa-anchor" data-name="anchor"></i>
-            </li>
-            <li class="card" id="4">
-                <i class="fa fa-bolt" data-name="bolt"></i>
-            </li>
-            <li class="card" id="5">
-                <i class="fa fa-cube"  data-name="cube"></i>
-            </li>
-            <li class="card" id="6">
-                <i class="fa fa-anchor" data-name="anchor"></i>
-            </li>
-            <li class="card" id="7">
-                <i class="fa fa-leaf" data-name="leaf"></i>
-            </li>
-            <li class="card" id="8">
-                <i class="fa fa-bicycle" data-name="bicycle"></i>
-            </li>
-            <li class="card" id="9">
-                <i class="fa fa-diamond" data-icon="diamond"></i>
-            </li>
-            <li class="card" id="10">
-                <i class="fa fa-bomb" data-name="bomb"></i>
-            </li>
-            <li class="card" id="11">
-                <i class="fa fa-leaf" data-name="leaf"></i>
-            </li>
-            <li class="card" id="12">
-                <i class="fa fa-bomb" data-name="bomb"></i>
-            </li>
-            <li class="card" id="13">
-                <i class="fa fa-bolt" data-name="bolt"></i>
-            </li>
-            <li class="card" id="14">
-                <i class="fa fa-bicycle" data-name="bicycle"></i>
-            </li>
-            <li class="card" id="15">
-                <i class="fa fa-paper-plane-o" data-name="Paper"></i>
-            </li>
-            <li class="card" id="16">
-                <i class="fa fa-cube" data-name="cube"></i>
-            </li>
+        <ul class="deck" id="deck"  onclick="showInnerDivId();  "   >
+         
         </ul>
     </div>
     <div id="winpage" class="winPage closed">
@@ -90,6 +27,28 @@
   <p>Wanna play again?</p>
   <button type="button" role="button" class="playAgain btn btn-info" onclick="Restart();">Play again!</button>
 </div>
+</div>
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+    <div class="row" style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">
+        <div class="col-6 col-md-3" style="padding: 10px;">
+            <span class="moves" id="moves">0</span> Moves
+        </div>
+        <div class="col-6 col-md-3" style="padding: 10px;">
+            <div id="timer">00:00:00</div>
+        </div>
+        <div class="col-6 col-md-3" style="padding: 10px;">
+            <button type="button" class="btn" onclick="Restart();" 
+                style="background-color: #007bff; color: white; padding: 8px 12px; border: none; border-radius: 5px;">
+                <i class="fa fa-repeat"> Restart</i>
+            </button>
+        </div>
+        <div class="col-6 col-md-3" style="padding: 10px;">
+            <button type="button" id="hint" class="btn" onclick="hint();" 
+                style="background-color: #ffc107; color: black; padding: 8px 12px; border: none; border-radius: 5px;">
+                <i class="fa fa-lightbulb-o"></i> Hint
+            </button>
+        </div>
+    </div>
 </div>
 
 <script src="Memory-Game.js"></script>
